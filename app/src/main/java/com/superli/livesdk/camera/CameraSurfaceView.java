@@ -26,6 +26,7 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
     public CameraSurfaceView(Context context, Camera camera) {
         super(context);
         mCamera = camera;
+        mCamera.setDisplayOrientation(90);
         mHolder = getHolder();
         mHolder.addCallback(this);
         setFocusable(true);
