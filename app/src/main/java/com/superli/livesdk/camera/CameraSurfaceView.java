@@ -36,6 +36,7 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         // The Surface has been created, now tell the camera where to draw the preview.
+        Log.i(TAG, "surfaceCreated");
         try {
             mCamera.setPreviewDisplay(mHolder);
             mCamera.startPreview();
@@ -46,6 +47,7 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
 
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+        Log.i(TAG, "surfaceChanged");
         if (mHolder.getSurface() == null) {
             return;
         }
@@ -65,6 +67,7 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        Log.i(TAG, "surfaceDestroyed");
         stopPreviewDisplay();
     }
 
@@ -73,6 +76,7 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
         try {
             mCamera.setPreviewCallback(null);
             mCamera.stopPreview();
+            mCamera.release();
         } catch (Exception e){
             Log.i(TAG, "Error while STOP preview for camera", e);
         }
